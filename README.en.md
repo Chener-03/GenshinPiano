@@ -1,36 +1,22 @@
-# genshinpiano
+# Genshin Impact Piano
+![PIC](./src/main/resources/icon.png)
 
-#### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
+#### Introduce
+Script to help you play automatically in the Genshin Impact game, including single step performance, key prompt, etc
 
-#### Software Architecture
-Software architecture description
+The music score will be uploaded to the server in succession, and can be played directly in the software without downloading the music score separately
 
-#### Installation
+All music scores are collected from the whole network and their sources are marked. If there is infringement, please contact the author to get off the shelf
+Keep developing new functions
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+See more http://chener.xyz:8966
 
-#### Instructions
+#### Explain
+1. The simulation key is the driver layer, and the driver signature must be enabled and disabled
+2. The key prompt is a transparent window covering prompt. Never modify the game memory. You can use it with confidence
+3. Please refer to the official website for detailed instructions
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### Screenshot
+![PIC1](./picture/img.png)
 
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![PIC2](./picture/img_1.png)
