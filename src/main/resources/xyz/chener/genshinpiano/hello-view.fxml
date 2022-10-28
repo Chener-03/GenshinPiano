@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="457.0" prefWidth="689.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.chener.genshinpiano.MainController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="869.0">
+         <children>
+            <TextField fx:id="searchText" promptText="输入歌名搜索" />
+            <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="23.0" prefWidth="48.0" styleClass="btn-success" text="搜索" />
+            <Separator opacity="0.0" prefHeight="24.0" prefWidth="21.0" />
+            <ComboBox fx:id="combo" prefHeight="23.0" prefWidth="160.0" />
+            <Separator opacity="0.0" prefHeight="23.0" prefWidth="30.0" />
+            <Button fx:id="sdButton" styleClass="btn-success" mnemonicParsing="false" onAction="#onsdButtonClick" prefHeight="23.0" prefWidth="47.0" text="单步" />
+            <Separator opacity="0.0" prefHeight="23.0" prefWidth="28.0" />
+             <Button fx:id="playButton" onAction="#onPlayButtonClick" prefHeight="23.0" prefWidth="70.0" styleClass="btn-success" text="自动播放" />
+            <Separator opacity="0.0" prefHeight="19.0" prefWidth="23.0" />
+
+             <Button fx:id="lxButton" onAction="#onpracticeButtonClick" prefHeight="23.0" prefWidth="48.0" styleClass="btn-success" text="练习" />
+         </children>
+      </HBox>
+      <TextArea fx:id="logger" prefHeight="380.0" prefWidth="649.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Hyperlink onAction="#jmpGit" prefHeight="37.0" prefWidth="296.0" text="https://github.com/Chener-03" />
+            <Separator opacity="0.0" prefHeight="37.0" prefWidth="290.0" />
+            <Hyperlink onAction="#onHelpClick" prefHeight="40.0" prefWidth="43.0" text="帮助" />
+         </children>
+      </HBox>
+   </children>
+
+</VBox>

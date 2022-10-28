@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'xyz.chener'
+version '1.0'
+
+repositories {
+    maven { name "Alibaba" ; url "https://maven.aliyun.com/repository/public" }
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'genshinpiano.main'
+    mainClass = 'xyz.chener.genshinpiano.Main'
+}
+
+javafx {
+    version = '17.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    implementation('org.controlsfx:controlsfx:11.1.1')
+    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
+        exclude(group: 'org.openjfx')
+    }
+    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0-rc2'
+//    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'GenshinPianoApp'
+    }
+    jpackage{
+        icon='G:\\my\\code\\Java\\Project\\javafx\\genshinpiano\\src\\main\\resources\\icon.ico'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
+}
+
+processResources{
+    include{
+        "**/*.*"
+    }
+}
+
+task javaDoc(type: Javadoc){
+    options{
+        encoding('UTF-8')
+        charSet('UTF-8')
+    }
+}
