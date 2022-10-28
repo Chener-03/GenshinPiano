@@ -1,7 +1,9 @@
 # Genshin Impact Piano 
 ![PIC](./src/main/resources/icon.png)
 
-#### 介绍
+[English](https://github.com/Chener-03/GenshinPiano/blob/master/README.en.md)
+
+#### 介绍  
 帮助你在原神游戏中自动演奏的脚本,包含单步演奏,按键提示等
 
 乐谱会陆续上传到服务端,软件中可直接演奏,无需单独下载乐谱
