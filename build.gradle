@@ -65,16 +65,18 @@ jlink {
         icon = project.projectDir.getAbsolutePath()+"/src/main/resources/icon.ico"
     }
     task copyLibrary {
-        println 'Project Address https://github.com/Chener-03/GenshinPiano'
-        println 'Follow MIT Open Source Protocol'
-        println 'Copy Library'
-        new File(project.buildDir.getAbsolutePath()).mkdir()
-        new File(project.buildDir.getAbsolutePath()+"/jpackage").mkdir()
-        new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp").mkdir()
-        new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs").mkdir()
-        Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/globleHotKey4J.dll"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/globleHotKey4J.dll"))
-        Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/keySimulation.sys"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/keySimulation.sys"))
+        doFirst{
+            println 'Project Address https://github.com/Chener-03/GenshinPiano'
+            println 'Follow MIT Open Source Protocol'
+            println 'Copy Library'
+            new File(project.buildDir.getAbsolutePath()).mkdir()
+            new File(project.buildDir.getAbsolutePath()+"/jpackage").mkdir()
+            new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp").mkdir()
+            new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs").mkdir()
+            Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/globleHotKey4J.dll"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/globleHotKey4J.dll"))
+            Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/keySimulation.sys"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/keySimulation.sys"))
 
+        }
     }
     jpackage.finalizedBy(copyLibrary)
 }
