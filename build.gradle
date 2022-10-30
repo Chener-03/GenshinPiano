@@ -1,3 +1,5 @@
+import java.nio.file.Files
+
 plugins {
     id 'java'
     id 'application'
@@ -46,7 +48,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0-rc2'
-//    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 }
 
@@ -61,9 +62,23 @@ jlink {
         name = 'GenshinPianoApp'
     }
     jpackage{
-        icon='G:\\my\\code\\Java\\Project\\javafx\\genshinpiano\\src\\main\\resources\\icon.ico'
+        icon = project.projectDir.getAbsolutePath()+"/src/main/resources/icon.ico"
     }
+    task copyLibrary {
+        println 'Project Address https://github.com/Chener-03/GenshinPiano'
+        println 'Follow MIT Open Source Protocol'
+        println 'Copy Library'
+        new File(project.buildDir.getAbsolutePath()).mkdir()
+        new File(project.buildDir.getAbsolutePath()+"/jpackage").mkdir()
+        new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp").mkdir()
+        new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs").mkdir()
+        Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/globleHotKey4J.dll"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/globleHotKey4J.dll"))
+        Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/keySimulation.sys"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/keySimulation.sys"))
+
+    }
+    jpackage.finalizedBy(copyLibrary)
 }
+
 
 jlinkZip {
     group = 'distribution'
