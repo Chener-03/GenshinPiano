@@ -29,7 +29,13 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: jpackage
- 
+        
+    - name: Upload latest artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: GenshinPiano-release
+        path: ./build/jpackage/GenshinPianoApp/**
+        if-no-files-found: error
 
   
     
