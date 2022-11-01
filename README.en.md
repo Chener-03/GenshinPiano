@@ -12,7 +12,7 @@ Keep developing new functions
 See more http://chener.xyz:8966
 
 #### Explain
-1. The simulation key is the driver layer, and the driver signature must be enabled and disabled
+1. The simulation key is the driver layer
 2. The key prompt is a transparent window covering prompt. Never modify the game memory. You can use it with confidence
 3. Please refer to the official website for detailed instructions
 
