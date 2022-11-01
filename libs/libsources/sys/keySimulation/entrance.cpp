@@ -61,6 +61,7 @@ extern "C" {
 		SearchMouServiceCallBack();
 		pdev->Flags &= ~DO_DEVICE_INITIALIZING;
 		
+		
 
 		return status;
 	}
@@ -137,6 +138,65 @@ extern "C" {
 		pirp->IoStatus.Status = STATUS_SUCCESS;
 		IoCompleteRequest(pirp, IO_NO_INCREMENT);
 		return STATUS_SUCCESS;
+	}
+
+
+
+
+	NTSTATUS DriverEntry2(PDRIVER_OBJECT driver, PUNICODE_STRING path)
+	{
+		#define FILE_DEVICE_MIRRORE 0x3138
+
+		UNICODE_STRING devname;
+		RtlInitUnicodeString(&devname, NAME);
+		PDEVICE_OBJECT pdev = NULL;
+		IoCreateDevice(driver, 0,
+			&devname, FILE_DEVICE_MIRRORE, FILE_DEVICE_SECURE_OPEN, FALSE, &pdev);
+		
+		UNICODE_STRING devlink;
+		RtlInitUnicodeString(&devlink, L"\\??\\keysimulationdriverlink");
+		IoCreateSymbolicLink(&devlink, &devname);
+
+		SetFlag(driver->Flags, DO_DIRECT_IO);
+
+		auto defaultNotSupport = [](PDEVICE_OBJECT device_obj, PIRP irp) {
+			UNREFERENCED_PARAMETER(device_obj);
+			irp->IoStatus.Status = STATUS_NOT_SUPPORTED;
+			IofCompleteRequest(irp, IO_NO_INCREMENT);
+			return irp->IoStatus.Status;
+
+		};
+		for (int t = 0; t <= IRP_MJ_MAXIMUM_FUNCTION; t++)
+			driver->MajorFunction[t] = defaultNotSupport;
+
+
+		auto defaultCreateCloseFunction = [](PDEVICE_OBJECT device, PIRP pirp) {
+			pirp->IoStatus.Status = STATUS_SUCCESS;
+			IoCompleteRequest(pirp, IO_NO_INCREMENT);
+			return STATUS_SUCCESS;
+		};
+
+		driver->MajorFunction[IRP_MJ_CREATE] = defaultCreateCloseFunction;
+		driver->MajorFunction[IRP_MJ_CLOSE] = defaultCreateCloseFunction;
+		driver->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DispatchIOCTL;
+		driver->DriverUnload = NULL;
+		
+		pdev->AlignmentRequirement = FILE_WORD_ALIGNMENT;
+
+		SearchKdbServiceCallBack();
+		SearchMouServiceCallBack();
+		ClearFlag(pdev->Flags, DO_DEVICE_INITIALIZING);
+
+
+		return STATUS_SUCCESS;
+	}
+
+	// for mapper diy entry   [GsDriverEntry]
+	NTSTATUS custom_entry_point(PVOID a1, PVOID a2)
+	{
+		UNICODE_STRING driName;
+		RtlInitUnicodeString(&driName, L"\\Driver\\keysimulationdriver");
+		return IoCreateDriver(&driName, &DriverEntry2);
 	}
 
 

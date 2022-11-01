@@ -75,7 +75,7 @@ jlink {
             new File(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs").mkdir()
             Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/globleHotKey4J.dll"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/globleHotKey4J.dll"))
             Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/keySimulation.sys"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/keySimulation.sys"))
-
+            Files.copy(java.nio.file.Path.of(project.projectDir.getAbsolutePath()+"/libs/keySimulationForMap.sys"),new FileOutputStream(project.buildDir.getAbsolutePath()+"/jpackage/GenshinPianoApp/libs/keySimulationForMap.sys"))
         }
     }
     jpackage.finalizedBy(copyLibrary)
