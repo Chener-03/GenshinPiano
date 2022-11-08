@@ -1,11 +1,9 @@
 package xyz.chener.genshinpiano.music.utils;
 
 import javafx.application.Platform;
-import xyz.chener.genshinpiano.MainController;
+import xyz.chener.genshinpiano.gui.MainController;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class LoggerImpl {

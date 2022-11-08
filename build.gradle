@@ -49,6 +49,11 @@ dependencies {
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0-rc2'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
+    implementation ('io.netty:netty-all:4.1.84.Final'){
+        exclude group:'io.netty' ,module:'netty-codec-xml'
+    }
+
 }
 
 test {
@@ -60,6 +65,9 @@ jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
         name = 'GenshinPianoApp'
+    }
+    mergedModule {
+        excludeProvides servicePattern: 'reactor.blockhound.*'
     }
     jpackage{
         icon = project.projectDir.getAbsolutePath()+"/src/main/resources/icon.ico"

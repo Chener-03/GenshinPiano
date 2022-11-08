@@ -15,7 +15,9 @@ open module genshinpiano.main {
     requires kotlin.stdlib;
     requires javafx.base;
     requires javafx.graphics;
-
+    requires io.netty.transport;
+    requires io.netty.all;
+    requires io.netty.codec;
 
 
     exports xyz.chener.genshinpiano;

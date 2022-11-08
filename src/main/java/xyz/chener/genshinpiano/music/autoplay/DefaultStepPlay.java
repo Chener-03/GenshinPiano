@@ -1,7 +1,7 @@
 package xyz.chener.genshinpiano.music.autoplay;
 
 
-import xyz.chener.genshinpiano.MainApplication;
+import xyz.chener.genshinpiano.gui.MainApplication;
 import xyz.chener.genshinpiano.music.entity.defaults.MusicData;
 import xyz.chener.genshinpiano.music.entity.defaults.MusicFrame;
 import xyz.chener.genshinpiano.music.entity.defaults.PlayData;
@@ -11,7 +11,6 @@ import xyz.chener.genshinpiano.music.keymapper.KeyCodeMapper;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Objects;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 

@@ -1,12 +1,10 @@
 package xyz.chener.genshinpiano;
 
 
-import xyz.chener.genshinpiano.music.jni.DrawCall;
-import xyz.chener.genshinpiano.music.jni.HotKey4J;
+import xyz.chener.genshinpiano.gui.MainApplication;
+import xyz.chener.genshinpiano.tcpctl.RpcCtl;
 
 import javax.swing.*;
-import java.lang.management.ManagementFactory;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 
@@ -21,7 +19,8 @@ public class Main {
         showStatement();
         Class.forName("xyz.chener.genshinpiano.music.utils.LoggerImpl");
         System.loadLibrary("libs/globleHotKey4J");
-        HotKey4J.SetUrlStart();
+        RpcCtl.checkParam(args);
+        //HotKey4J.SetUrlStart();
         MainApplication.main0(args);
     }
 

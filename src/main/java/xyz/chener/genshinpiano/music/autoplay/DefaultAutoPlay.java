@@ -5,6 +5,7 @@ import xyz.chener.genshinpiano.music.entity.defaults.MusicData;
 import xyz.chener.genshinpiano.music.entity.defaults.MusicFrame;
 import xyz.chener.genshinpiano.music.entity.defaults.PlayData;
 import xyz.chener.genshinpiano.music.keymapper.KeyCodeMapper;
+import xyz.chener.genshinpiano.tcpctl.RpcCtl;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -81,6 +82,7 @@ public class DefaultAutoPlay {
             }finally {
                 playLock.unlock();
                 System.out.println("播放结束");
+                RpcCtl.postEnd();
             }
         });
 

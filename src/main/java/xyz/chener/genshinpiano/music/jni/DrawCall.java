@@ -30,14 +30,14 @@ public class DrawCall {
 
     public static native void addDrawCallback(Runnable runnable);
 
+
+    public static native void shutDownDraw();
+
     public static void addEllipse(float x,float y,float xrideo,float yrideo,float width,int noteState)
     {
         float[] color = getColor(noteState);
         Asserts.assertBool(color.length==3,"r g b array is null");
         addEllipse(x, y, xrideo, yrideo, width,color[0],color[1],color[2]);
     }
-
-
-
 
 }

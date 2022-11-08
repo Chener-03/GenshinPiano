@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import xyz.chener.genshinpiano.music.prase.impl.PraseBG;
 import xyz.chener.genshinpiano.music.prase.impl.PraseDefault;
 import xyz.chener.genshinpiano.music.prase.impl.PraseDisomo;
+import xyz.chener.genshinpiano.music.prase.impl.PraseGG;
 
 public interface Prase <T> {
 
@@ -35,6 +36,9 @@ public interface Prase <T> {
                 }
                 case DOSIMO -> {
                     return new PraseDisomo();
+                }
+                case GG -> {
+                    return new PraseGG();
                 }
                 default -> {
                     System.err.println("Unknown SourceType");
